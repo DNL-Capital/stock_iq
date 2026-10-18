@@ -1,0 +1,79 @@
+
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stockiq"
+version = "0.0.6"
+description = "Thư viện Python cung cấp dữ liệu tài chính và công cụ phân tích chuyên sâu cho thị trường chứng khoán, quỹ đầu tư, hàng hóa và kinh tế vĩ mô; được phát triển và sở hữu bởi DNLcapital."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+license-files = ["LICENSE"]
+
+# Nhóm tác giả phát triển
+authors = [
+    { name = "Luong Duc Minh" },
+    { name = "Do Huu Quan" },
+    { name = "Ngo Hoang Anh Vy"},
+]
+
+# Đơn vị quản lý và duy trì
+maintainers = [
+    { name = "DNLcapital", email = "info@dnlcapital.com.vn" },
+]
+
+# Phân loại thư viện
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Topic :: Office/Business :: Financial",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+
+# Các thư viện phụ thuộc
+dependencies = [
+    "requests",
+    "pandas",
+    "openpyxl",
+    "beautifulsoup4",
+    "pytz",
+]
+
+# Dependencies cho phát triển và kiểm thử
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "pre-commit",
+    "pytest",
+]
+test = [
+    "pytest",
+]
+
+# Tự động tìm kiếm các package của StockIQ
+[tool.setuptools.packages.find]
+include = ["stockiq*"]
+
+# Cấu hình Pytest
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "live: live integration tests that call external financial APIs",
+]
+
+# Cấu hình Ruff tối giản
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+ignore = ["E501"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
